@@ -3,6 +3,8 @@
 from sktime.datasets._single_problem_loaders import load_gunpoint
 from sktime.datasets.classification._base import _ClassificationDatasetFromLoader
 
+__author__ = ["felipeangelimvieira"]
+
 
 class GunPoint(_ClassificationDatasetFromLoader):
     """GunPoint time series classification problem.
@@ -50,6 +52,7 @@ class GunPoint(_ClassificationDatasetFromLoader):
     """
 
     _tags = {
+        "object_type": ["dataset", "classification_dataset"],
         "name": "gun_point",
         "n_splits": 1,
         "is_univariate": True,

@@ -5,10 +5,10 @@ from pathlib import Path
 import pandas as pd
 
 from sktime.datasets._data_io import _download_and_extract, _reduce_memory_usage
-from sktime.datasets.forecasting._base import BaseForecastingDataset
+from sktime.datasets.base import BaseDataset
 
 
-class M5Dataset(BaseForecastingDataset):
+class M5Dataset(BaseDataset):
     """Fetch M5 dataset from https://zenodo.org/records/12636070 .
 
     Downloads and extracts dataset if not already downloaded. Fetched dataset is
@@ -45,6 +45,7 @@ class M5Dataset(BaseForecastingDataset):
     """
 
     _tags = {
+        "object_type": ["dataset", "forecasting_dataset"],
         "name": "m5_forecasting_accuracy",
         "n_splits": 1,
         # Estimator type

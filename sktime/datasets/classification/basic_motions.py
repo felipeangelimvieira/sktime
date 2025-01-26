@@ -3,6 +3,8 @@
 from sktime.datasets._single_problem_loaders import load_basic_motions
 from sktime.datasets.classification._base import _ClassificationDatasetFromLoader
 
+__author__ = ["felipeangelimvieira"]
+
 
 class BasicMotions(_ClassificationDatasetFromLoader):
     """BasicMotions time series classification problem.
@@ -48,6 +50,7 @@ class BasicMotions(_ClassificationDatasetFromLoader):
     """
 
     _tags = {
+        "object_type": ["dataset", "classification_dataset"],
         "name": "basic_motions",
         "n_splits": 1,
         "is_univariate": False,

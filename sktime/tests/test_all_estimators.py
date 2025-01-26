@@ -210,8 +210,8 @@ class BaseFixtureGenerator:
         # subsample estimators by OS & python version
         # this ensures that only a 1/3 of estimators are tested for a given combination
         # but all are tested on every OS at least once, and on every python version once
-        if MATRIXDESIGN:
-            est_list = subsample_by_version_os(est_list)
+        # if MATRIXDESIGN:
+        #    est_list = subsample_by_version_os(est_list)
 
         # run_test_for_class selects the estimators to run
         # based on whether they have changed, and whether they have all dependencies
@@ -786,7 +786,7 @@ class TestAllObjects(BaseFixtureGenerator, QuickTester):
         * get_test_params returns at least two test parameter sets
         """
 
-        min_coverage = estimator_class._MIN_TEST_PARAMS_COVERAGE
+        min_coverage = 2
         param_list = estimator_class.get_test_params()
 
         if isinstance(param_list, dict):

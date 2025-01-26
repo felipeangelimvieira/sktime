@@ -1812,7 +1812,7 @@ class y_inner_mtype(_BaseTag):
 
 
 class is_univariate(_BaseTag):
-    """Property: Whether the dataset is univariate.
+    """Dataset Property: Whether the dataset is univariate.
 
     - String name: ``"is_univariate"``
     - Public property tag
@@ -1825,6 +1825,9 @@ class is_univariate(_BaseTag):
 
     If the tag is ``False``, the dataset consists of multivariate time series,
     i.e., each time series has more than one variable.
+
+    In the case of forecasting datasets, this tag informs the dimensionality
+    of the `y`dataframe.
     """
 
     _tags = {
@@ -1837,7 +1840,7 @@ class is_univariate(_BaseTag):
 
 
 class is_one_series(_BaseTag):
-    """Property: Whether the data consists of a single series.
+    """Forecasting Dataset Property: Whether the data consists of a single series.
 
     - String name: ``"is_one_series"``
     - Public property tag
@@ -1848,6 +1851,8 @@ class is_one_series(_BaseTag):
     If the tag is ``True``, the data consists of a single time series.
 
     If the tag is ``False``, the data consists of multiple time series.
+
+    This should be True if n_dimensions is 1 and n_panels is also 1
     """
 
     _tags = {
@@ -1869,6 +1874,7 @@ class n_panels(_BaseTag):
     - Default: ``1``
 
     If the tag is set, it specifies the number of panels in the dataset.
+    This is the number of unique time series in the dataset.
     """
 
     _tags = {
@@ -1904,7 +1910,7 @@ class is_one_panel(_BaseTag):
 
 
 class is_equally_spaced(_BaseTag):
-    """Property: Whether the series in the dataset are equally spaced.
+    """Forecasting Dataset Property: Whether the series in the dataset are equally spaced.
 
     - String name: ``"is_equally_spaced"``
     - Public property tag
@@ -1915,6 +1921,8 @@ class is_equally_spaced(_BaseTag):
     If the tag is ``True``, the series in the dataset are equally spaced.
 
     If the tag is ``False``, the series in the dataset are not equally spaced.
+
+    This dataset
     """
 
     _tags = {
@@ -1996,7 +2004,7 @@ class is_empty(_BaseTag):
 
 
 class has_nans(_BaseTag):
-    """Property: Whether the dataset contains NaNs.
+    """Forecasting Dataset Property: Whether the dataset contains NaNs.
 
     - String name: ``"has_nans"``
     - Public property tag
@@ -2019,7 +2027,7 @@ class has_nans(_BaseTag):
 
 
 class n_instances(_BaseTag):
-    """Property: Number of instances in the dataset.
+    """Dataset Property: Number of instances in the dataset.
 
     - String name: ``"n_instances"``
     - Public property tag
@@ -2028,6 +2036,7 @@ class n_instances(_BaseTag):
     - Default: ``0``
 
     If the tag is set, it specifies the number of instances in the dataset.
+    Should be equal to the length of `y`.
     """
 
     _tags = {
@@ -2040,7 +2049,7 @@ class n_instances(_BaseTag):
 
 
 class n_instances_train(_BaseTag):
-    """Property: Number of training instances in the dataset.
+    """Dataset Property: Number of training instances in the dataset.
 
     - String name: ``"n_instances_train"``
     - Public property tag
@@ -2049,6 +2058,7 @@ class n_instances_train(_BaseTag):
     - Default: ``0``
 
     If the tag is set, it specifies the number of training instances in the dataset.
+    Should be equal to the length of `y_train`.
     """
 
     _tags = {
@@ -2061,7 +2071,7 @@ class n_instances_train(_BaseTag):
 
 
 class n_instances_test(_BaseTag):
-    """Property: Number of test instances in the dataset.
+    """Dataset Property: Number of test instances in the dataset.
 
     - String name: ``"n_instances_test"``
     - Public property tag
@@ -2070,6 +2080,7 @@ class n_instances_test(_BaseTag):
     - Default: ``0``
 
     If the tag is set, it specifies the number of test instances in the dataset.
+    Should be equal to the length of `y_test`.
     """
 
     _tags = {
@@ -2082,7 +2093,7 @@ class n_instances_test(_BaseTag):
 
 
 class n_classes(_BaseTag):
-    """Property: Number of classes in the dataset.
+    """Classification Dataset Property: Number of classes in the dataset.
 
     - String name: ``"n_classes"``
     - Public property tag
@@ -2103,7 +2114,7 @@ class n_classes(_BaseTag):
 
 
 class frequency(_BaseTag):
-    """Property: Frequency of the time series in the dataset.
+    """Forecasting Dataset Property: Frequency of the time series in the dataset.
 
     - String name: ``"frequency"``
     - Public property tag
@@ -2133,7 +2144,7 @@ class frequency(_BaseTag):
 
 
 class has_exogenous(_BaseTag):
-    """Property: Whether the dataset contains exogenous variables.
+    """Forecasting Dataset Property: Whether the dataset contains exogenous variables.
 
     - String name: ``"has_exogenous"``
     - Public property tag
@@ -2220,13 +2231,17 @@ class name(_BaseTag):
 
 class n_timepoints(_BaseTag):
     """
-    Property: number of timepoints in the dataset.
+    Forecasting Dataset Property: number of timepoints in the dataset.
 
     - String name: ```n_timepoints````
     - Public property tag
     - Values: positive integers
     - Example: ``100``
     - Default: ``None``
+
+    Number of timepoints in the dataset, per series. If the dataset is composed
+    of series of diffferent lengths, this should be equal the max length
+    seen in the dataset.
     """
 
     _tags = {
@@ -2247,6 +2262,10 @@ class n_timepoints_train(_BaseTag):
     - Values: positive integers
     - Example: ``80``
     - Default: ``None``
+
+    Number of timepoints in the training set, per series. If the dataset is composed
+    of series of diffferent lengths, this should be equal the max length seen
+    in the training set.
     """
 
     _tags = {
@@ -2267,6 +2286,10 @@ class n_timepoints_test(_BaseTag):
     - Values: positive integers
     - Example: ``20``
     - Default: ``None``
+
+    Number of timepoints in the test set, per series. If the dataset is composed
+    of series of diffferent lengths, this should be equal the max length seen
+    in the test set.
     """
 
     _tags = {
@@ -2279,13 +2302,16 @@ class n_timepoints_test(_BaseTag):
 
 
 class n_dimensions(_BaseTag):
-    """Property: Number of dimensions in the dataset.
+    """Forecasting Dataset Property: Number of dimensions in the dataset.
 
     - String name: ``"n_dimensions"``
     - Public property tag
     - Values: integer
     - Example: ``3``
     - Default: ``1``
+
+    Number of dimensions in the dataset. This is the number of columns in
+    the `y` dataframe.
     """
 
     _tags = {

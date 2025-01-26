@@ -36,6 +36,7 @@ class ShampooSales(_ForecastingDatasetFromLoader):
     """
 
     _tags = {
+        "object_type": ["dataset", "forecasting_dataset"],
         "name": "shampoo_sales",
         "n_splits": 0,
         "is_univariate": True,

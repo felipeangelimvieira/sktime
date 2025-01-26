@@ -3,6 +3,8 @@
 from sktime.datasets._single_problem_loaders import load_arrow_head
 from sktime.datasets.classification._base import _ClassificationDatasetFromLoader
 
+__author__ = ["felipeangelimvieira"]
+
 
 class ArrowHead(_ClassificationDatasetFromLoader):
     """ArrowHead time series classification problem.
@@ -48,6 +50,7 @@ class ArrowHead(_ClassificationDatasetFromLoader):
     """
 
     _tags = {
+        "object_type": ["dataset", "classification_dataset"],
         "name": "arrow_head",
         "n_splits": 1,
         "is_univariate": True,

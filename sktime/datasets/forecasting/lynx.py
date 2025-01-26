@@ -48,6 +48,7 @@ class Lynx(_ForecastingDatasetFromLoader):
     """
 
     _tags = {
+        "object_type": ["dataset", "forecasting_dataset"],
         "name": "lynx",
         "n_splits": 0,
         "is_univariate": True,

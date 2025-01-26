@@ -33,10 +33,30 @@ class BaseDataset(BaseObject):
         "name": None,  # The dataset unique name
         "python_dependencies": None,  # python dependencies required to load the dataset
         "python_version": None,  # python version required to load the dataset
+        ## General tags
         "n_splits": 0,  # Number of cross-validation splits, if any.
+        "is_univariate": True,
+        "n_instances": None,
+        "n_instances_train": None,
+        "n_instances_test": None,
+        ## Classification specific tags
+        "n_classes": 2,
+        ## Forecasting specific tags
+        "is_equally_spaced": True,
+        "has_nans": False,
+        "has_exogenous": False,
+        "n_timepoints": None,
+        "n_timepoints_train": None,
+        "n_timepoints_test": None,
+        "frequency": "M",
+        "n_dimensions": 1,
+        "is_one_panel": True,
+        "n_panels": 1,
+        "n_hierarchy_levels": 0,
+        "is_one_series": True,
+        ## Regression specific tags
+        # Regression datasets only have the general tags
     }
-
-    _MIN_TEST_PARAMS_COVERAGE = 1
 
     def __init__(self):
         super().__init__()

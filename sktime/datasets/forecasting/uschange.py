@@ -50,6 +50,7 @@ class USChange(_ForecastingDatasetFromLoader):
     """
 
     _tags = {
+        "object_type": ["dataset", "forecasting_dataset"],
         "name": "uschange",
         "n_splits": 0,  # No splits available
         "is_univariate": False,

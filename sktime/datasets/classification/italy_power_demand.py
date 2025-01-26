@@ -3,6 +3,8 @@
 from sktime.datasets._single_problem_loaders import load_italy_power_demand
 from sktime.datasets.classification._base import _ClassificationDatasetFromLoader
 
+__author__ = ["felipeangelimvieira"]
+
 
 class ItalyPowerDemand(_ClassificationDatasetFromLoader):
     """ItalyPowerDemand time series classification problem.
@@ -46,6 +48,7 @@ class ItalyPowerDemand(_ClassificationDatasetFromLoader):
     """
 
     _tags = {
+        "object_type": ["dataset", "classification_dataset"],
         "name": "italy_power_demand",
         "n_splits": 1,
         "is_univariate": True,

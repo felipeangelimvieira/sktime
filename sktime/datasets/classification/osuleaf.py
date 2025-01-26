@@ -47,6 +47,7 @@ class OSULeaf(_ClassificationDatasetFromLoader):
     """
 
     _tags = {
+        "object_type": ["dataset", "classification_dataset"],
         "name": "osuleaf",
         "n_splits": 1,
         "is_univariate": True,

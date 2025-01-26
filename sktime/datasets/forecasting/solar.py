@@ -49,6 +49,7 @@ class Solar(_ForecastingDatasetFromLoader):
     """
 
     _tags = {
+        "object_type": ["dataset", "forecasting_dataset"],
         "name": "solar",
         "n_splits": 0,  # No splits available
         "is_univariate": True,

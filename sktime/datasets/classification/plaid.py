@@ -30,6 +30,7 @@ class PLAID(_ClassificationDatasetFromLoader):
     """
 
     _tags = {
+        "object_type": ["dataset", "classification_dataset"],
         "name": "plaid",
         "n_splits": 1,
         "is_univariate": True,

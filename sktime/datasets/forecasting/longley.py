@@ -54,6 +54,7 @@ class Longley(_ForecastingDatasetFromLoader):
     """
 
     _tags = {
+        "object_type": ["dataset", "forecasting_dataset"],
         "name": "longley",
         "is_univariate": True,
         "is_one_series": True,
